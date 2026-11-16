@@ -126,6 +126,23 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   )
 }
 
+// Shows a download button only when public/cv.pdf exists in the deployment.
+function CvButton() {
+  const { t } = useApp()
+  const [ok, setOk] = useState(false)
+  useEffect(() => {
+    fetch('/cv.pdf', { method: 'HEAD' })
+      .then((r) => setOk(r.ok && (r.headers.get('content-type') ?? '').includes('pdf')))
+      .catch(() => setOk(false))
+  }, [])
+  if (!ok) return null
+  return (
+    <a href="/cv.pdf" download="CV_Alejandro_Avila_Flores.pdf" className="btn btn-ghost">
+      ↓ {t({ es: 'Descargar CV', en: 'Download CV' })}
+    </a>
+  )
+}
+
 const levelLabel = (v: number) =>
   v >= 85 ? { es: 'Avanzado', en: 'Advanced' } : v >= 60 ? { es: 'Intermedio', en: 'Intermediate' } : { es: 'Básico-Intermedio', en: 'Basic-Intermediate' }
 
@@ -177,6 +194,7 @@ export default function Home() {
             <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn-ghost">
               GitHub ↗
             </a>
+            <CvButton />
           </div>
           <div className="stats">
             {stats.map((s, i) => (

@@ -188,6 +188,42 @@ export const projects: { to: string; icon: string; color: string; cats: Cat[]; t
     },
     tags: ['Game', 'Security awareness', 'UX'],
   },
+  {
+    to: '/lab/peru',
+    icon: '🇵🇪',
+    color: 'var(--bad)',
+    cats: ['data'],
+    title: { es: 'Perú en datos', en: 'Peru in data' },
+    desc: {
+      es: 'Explorador con datos reales del Banco Mundial: conectividad, economía y educación del Perú frente a sus vecinos de la región.',
+      en: 'Explorer on real World Bank data: Peru’s connectivity, economy and education compared with its regional neighbours.',
+    },
+    tags: ['Dashboard', 'Real data', 'World Bank'],
+  },
+  {
+    to: '/lab/automatizacion',
+    icon: '⚙️',
+    color: 'var(--ok)',
+    cats: ['data'],
+    title: { es: 'Simulador de automatización', en: 'Automation simulator' },
+    desc: {
+      es: 'Basado en mi trabajo en EY: compara un proceso manual con uno automatizado y calcula horas liberadas, ahorro y retorno de la inversión.',
+      en: 'Based on my work at EY: compare a manual process with an automated one and compute hours freed, savings and payback.',
+    },
+    tags: ['Process automation', 'ROI', 'Alteryx'],
+  },
+  {
+    to: '/lab/contrasenas',
+    icon: '🔑',
+    color: 'var(--c2)',
+    cats: ['cyber'],
+    title: { es: 'Analizador de contraseñas', en: 'Password analyser' },
+    desc: {
+      es: 'Mide la fortaleza de una contraseña, estima cuánto tardaría en caer y genera alternativas seguras. Nada sale de tu navegador.',
+      en: 'Measures password strength, estimates how long it would survive and generates safe alternatives. Nothing leaves your browser.',
+    },
+    tags: ['Security', 'Entropy', 'Privacy'],
+  },
 ]
 
 export const academic: { icon: string; title: T; meta: T; points: T[]; tags: string[] }[] = [

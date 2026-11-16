@@ -11,6 +11,9 @@ const Phishing = lazy(() => import('./pages/Phishing'))
 const Threats = lazy(() => import('./pages/Threats'))
 const Firewall = lazy(() => import('./pages/Firewall'))
 const SqlDetective = lazy(() => import('./pages/SqlDetective'))
+const Password = lazy(() => import('./pages/Password'))
+const Automation = lazy(() => import('./pages/Automation'))
+const Peru = lazy(() => import('./pages/Peru'))
 import './styles.css'
 
 function ScrollTop() {
@@ -36,6 +39,9 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/lab/amenazas" element={<Threats />} />
           <Route path="/lab/firewall" element={<Firewall />} />
           <Route path="/lab/sql" element={<SqlDetective />} />
+          <Route path="/lab/contrasenas" element={<Password />} />
+          <Route path="/lab/automatizacion" element={<Automation />} />
+          <Route path="/lab/peru" element={<Peru />} />
           <Route path="*" element={<Home />} />
         </Routes>
         </Suspense>
