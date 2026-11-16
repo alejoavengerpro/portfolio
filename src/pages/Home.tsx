@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useApp } from '../i18n'
-import { certs, education, experience, profile, projects, skills, stats } from '../data/content'
+import { academic, cats, certs, education, experience, profile, projects, skills, stack, stats, type Cat } from '../data/content'
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -126,6 +126,23 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   )
 }
 
+// Shows a download button only when public/cv.pdf exists in the deployment.
+function CvButton() {
+  const { t } = useApp()
+  const [ok, setOk] = useState(false)
+  useEffect(() => {
+    fetch('/cv.pdf', { method: 'HEAD' })
+      .then((r) => setOk(r.ok && (r.headers.get('content-type') ?? '').includes('pdf')))
+      .catch(() => setOk(false))
+  }, [])
+  if (!ok) return null
+  return (
+    <a href="/cv.pdf" download="CV_Alejandro_Avila_Flores.pdf" className="btn btn-ghost">
+      ↓ {t({ es: 'Descargar CV', en: 'Download CV' })}
+    </a>
+  )
+}
+
 const levelLabel = (v: number) =>
   v >= 85 ? { es: 'Avanzado', en: 'Advanced' } : v >= 60 ? { es: 'Intermedio', en: 'Intermediate' } : { es: 'Básico-Intermedio', en: 'Basic-Intermediate' }
 
@@ -139,6 +156,8 @@ export default function Home() {
   const { t } = useApp()
   const [role, setRole] = useState(0)
   const [tab, setTab] = useState(0)
+  const [cat, setCat] = useState<Cat | 'all'>('all')
+  const shown = projects.filter((p) => cat === 'all' || p.cats.includes(cat))
 
   useEffect(() => {
     const id = setInterval(() => setRole((r) => (r + 1) % profile.roles.length), 2400)
@@ -175,6 +194,7 @@ export default function Home() {
             <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn-ghost">
               GitHub ↗
             </a>
+            <CvButton />
           </div>
           <div className="stats">
             {stats.map((s, i) => (
@@ -187,30 +207,76 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="marquee" aria-hidden="true">
+        <div>
+          {[...stack, ...stack].map((x, i) => (
+            <span key={i}>{x}</span>
+          ))}
+        </div>
+      </div>
+
       <section className="block" id="proyectos">
         <div className="wrap">
           <Reveal>
             <span className="eyebrow">01 — {t({ es: 'Laboratorio', en: 'Lab' })}</span>
             <h2>{t({ es: 'Proyectos que puedes usar ahora', en: 'Projects you can use right now' })}</h2>
           </Reveal>
+          <div className="skill-tabs" role="tablist">
+            {cats.map((c) => (
+              <button key={c.key} role="tab" aria-selected={cat === c.key} className={`tab ${cat === c.key ? 'on' : ''}`} onClick={() => setCat(c.key)}>
+                {t(c.label)} <span className="mono">{c.key === 'all' ? projects.length : projects.filter((p) => p.cats.includes(c.key as Cat)).length}</span>
+              </button>
+            ))}
+          </div>
           <div className="grid-3">
-            {projects.map((p, i) => (
-              <Reveal key={p.to} delay={i * 110}>
-                <Link to={p.to} className="proj" style={{ ['--pc' as string]: p.color }} onMouseMove={glow}>
-                  <div className="ico">{p.icon}</div>
-                  <h3>{t(p.title)}</h3>
-                  <p>{t(p.desc)}</p>
-                  <div className="chips">
-                    {p.tags.map((x) => (
+            {shown.map((p) => (
+              <Link key={p.to} to={p.to} className="proj pop" style={{ ['--pc' as string]: p.color }} onMouseMove={glow}>
+                <div className="ico">{p.icon}</div>
+                <h3>{t(p.title)}</h3>
+                <p>{t(p.desc)}</p>
+                <div className="chips">
+                  {p.tags.map((x) => (
+                    <span className="chip" key={x}>
+                      {x}
+                    </span>
+                  ))}
+                </div>
+                <div className="go">
+                  {t({ es: 'Abrir demo', en: 'Open demo' })} <span>→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <Reveal>
+            <h3 className="subhead">{t({ es: 'Proyectos académicos', en: 'Academic projects' })}</h3>
+          </Reveal>
+          <div className="grid-2 even">
+            {academic.map((a, i) => (
+              <Reveal key={i} delay={i * 110}>
+                <div className="card acad">
+                  <div className="xp-head">
+                    <div className="ico-sm">{a.icon}</div>
+                    <div style={{ flex: 1, minWidth: 200 }}>
+                      <h3>{t(a.title)}</h3>
+                      <span className="muted" style={{ fontSize: 13 }}>
+                        {t(a.meta)}
+                      </span>
+                    </div>
+                  </div>
+                  <ul className="bul">
+                    {a.points.map((b, j) => (
+                      <li key={j} dangerouslySetInnerHTML={{ __html: t(b) }} />
+                    ))}
+                  </ul>
+                  <div className="chips" style={{ marginTop: 16 }}>
+                    {a.tags.map((x) => (
                       <span className="chip" key={x}>
                         {x}
                       </span>
                     ))}
                   </div>
-                  <div className="go">
-                    {t({ es: 'Abrir demo', en: 'Open demo' })} <span>→</span>
-                  </div>
-                </Link>
+                </div>
               </Reveal>
             ))}
           </div>

@@ -1,12 +1,19 @@
-import { StrictMode, useEffect } from 'react'
+import { StrictMode, Suspense, lazy, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { AppProvider } from './i18n'
 import Nav from './components/Nav'
 import Home from './pages/Home'
-import Anomalies from './pages/Anomalies'
-import Iso from './pages/Iso'
-import Phishing from './pages/Phishing'
+
+const Anomalies = lazy(() => import('./pages/Anomalies'))
+const Iso = lazy(() => import('./pages/Iso'))
+const Phishing = lazy(() => import('./pages/Phishing'))
+const Threats = lazy(() => import('./pages/Threats'))
+const Firewall = lazy(() => import('./pages/Firewall'))
+const SqlDetective = lazy(() => import('./pages/SqlDetective'))
+const Password = lazy(() => import('./pages/Password'))
+const Automation = lazy(() => import('./pages/Automation'))
+const Peru = lazy(() => import('./pages/Peru'))
 import './styles.css'
 
 function ScrollTop() {
@@ -24,12 +31,20 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <ScrollTop />
         <Nav />
+        <Suspense fallback={<div className="loading" />}>
         <Routes>
           <Route path="/lab/anomalias" element={<Anomalies />} />
           <Route path="/lab/iso27001" element={<Iso />} />
           <Route path="/lab/phishing" element={<Phishing />} />
+          <Route path="/lab/amenazas" element={<Threats />} />
+          <Route path="/lab/firewall" element={<Firewall />} />
+          <Route path="/lab/sql" element={<SqlDetective />} />
+          <Route path="/lab/contrasenas" element={<Password />} />
+          <Route path="/lab/automatizacion" element={<Automation />} />
+          <Route path="/lab/peru" element={<Peru />} />
           <Route path="*" element={<Home />} />
         </Routes>
+        </Suspense>
       </BrowserRouter>
     </AppProvider>
   </StrictMode>,

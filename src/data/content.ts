@@ -107,11 +107,32 @@ export const education: { name: string; detail: T; period: T }[] = [
   },
 ]
 
-export const projects: { to: string; icon: string; color: string; title: T; desc: T; tags: string[] }[] = [
+export type Cat = 'data' | 'cyber' | 'game'
+export const cats: { key: Cat | 'all'; label: T }[] = [
+  { key: 'all', label: { es: 'Todos', en: 'All' } },
+  { key: 'data', label: { es: 'Datos', en: 'Data' } },
+  { key: 'cyber', label: { es: 'Ciberseguridad', en: 'Cybersecurity' } },
+  { key: 'game', label: { es: 'Juegos', en: 'Games' } },
+]
+
+export const projects: { to: string; icon: string; color: string; cats: Cat[]; title: T; desc: T; tags: string[] }[] = [
+  {
+    to: '/lab/amenazas',
+    icon: '📡',
+    color: 'var(--bad)',
+    cats: ['data', 'cyber'],
+    title: { es: 'Radar de vulnerabilidades explotadas', en: 'Exploited vulnerabilities radar' },
+    desc: {
+      es: 'Dashboard con datos reales de CISA: qué fallas están explotando los atacantes hoy, a qué fabricantes golpean y cuáles se usan en ransomware.',
+      en: 'Dashboard on real CISA data: which flaws attackers exploit today, which vendors they hit and which are used in ransomware.',
+    },
+    tags: ['Dashboard', 'Real data', 'Threat intel'],
+  },
   {
     to: '/lab/anomalias',
     icon: '🔎',
     color: 'var(--c1)',
+    cats: ['data'],
     title: { es: 'Detector de anomalías contables', en: 'Accounting anomaly detector' },
     desc: {
       es: 'Analiza un libro diario con pruebas forenses: ley de Benford, duplicados, asientos fuera de horario y montos bajo el umbral de aprobación.',
@@ -123,6 +144,7 @@ export const projects: { to: string; icon: string; color: string; title: T; desc
     to: '/lab/iso27001',
     icon: '🛡️',
     color: 'var(--c2)',
+    cats: ['cyber'],
     title: { es: 'Evaluador ISO 27001', en: 'ISO 27001 assessor' },
     desc: {
       es: 'Evalúa los 93 controles del Anexo A, mide el cumplimiento por dominio y prioriza riesgos en una matriz de calor exportable.',
@@ -131,9 +153,34 @@ export const projects: { to: string; icon: string; color: string; title: T; desc
     tags: ['ISO/IEC 27001:2022', 'GRC', 'Risk matrix'],
   },
   {
+    to: '/lab/sql',
+    icon: '🕵️',
+    color: 'var(--ok)',
+    cats: ['game', 'data'],
+    title: { es: 'Detective SQL', en: 'SQL Detective' },
+    desc: {
+      es: 'Alguien robó la base de clientes. Resuelve el caso en 6 misiones escribiendo consultas SQL reales contra una base que corre en tu navegador.',
+      en: 'Someone stole the client database. Solve the case in 6 missions by writing real SQL queries against a database running in your browser.',
+    },
+    tags: ['Game', 'SQL', 'SQLite WASM'],
+  },
+  {
+    to: '/lab/firewall',
+    icon: '🧱',
+    color: 'var(--warn)',
+    cats: ['game', 'cyber'],
+    title: { es: 'Firewall Defender', en: 'Firewall Defender' },
+    desc: {
+      es: 'Juego arcade: eres el firewall. Bloquea ataques, deja pasar el tráfico legítimo y sobrevive a las oleadas DDoS.',
+      en: 'Arcade game: you are the firewall. Block attacks, let legitimate traffic through and survive the DDoS waves.',
+    },
+    tags: ['Game', 'Canvas', 'Arcade'],
+  },
+  {
     to: '/lab/phishing',
     icon: '🎣',
     color: 'var(--c3)',
+    cats: ['game', 'cyber'],
     title: { es: '¿Phishing o legítimo?', en: 'Phishing or legit?' },
     desc: {
       es: 'Un juego contra reloj: analiza correos, detecta las señales de fraude y suma puntos con tu racha. ¿Puedes llegar a rango Analista SOC?',
@@ -141,4 +188,77 @@ export const projects: { to: string; icon: string; color: string; title: T; desc
     },
     tags: ['Game', 'Security awareness', 'UX'],
   },
+  {
+    to: '/lab/peru',
+    icon: '🇵🇪',
+    color: 'var(--bad)',
+    cats: ['data'],
+    title: { es: 'Perú en datos', en: 'Peru in data' },
+    desc: {
+      es: 'Explorador con datos reales del Banco Mundial: conectividad, economía y educación del Perú frente a sus vecinos de la región.',
+      en: 'Explorer on real World Bank data: Peru’s connectivity, economy and education compared with its regional neighbours.',
+    },
+    tags: ['Dashboard', 'Real data', 'World Bank'],
+  },
+  {
+    to: '/lab/automatizacion',
+    icon: '⚙️',
+    color: 'var(--ok)',
+    cats: ['data'],
+    title: { es: 'Simulador de automatización', en: 'Automation simulator' },
+    desc: {
+      es: 'Basado en mi trabajo en EY: compara un proceso manual con uno automatizado y calcula horas liberadas, ahorro y retorno de la inversión.',
+      en: 'Based on my work at EY: compare a manual process with an automated one and compute hours freed, savings and payback.',
+    },
+    tags: ['Process automation', 'ROI', 'Alteryx'],
+  },
+  {
+    to: '/lab/contrasenas',
+    icon: '🔑',
+    color: 'var(--c2)',
+    cats: ['cyber'],
+    title: { es: 'Analizador de contraseñas', en: 'Password analyser' },
+    desc: {
+      es: 'Mide la fortaleza de una contraseña, estima cuánto tardaría en caer y genera alternativas seguras. Nada sale de tu navegador.',
+      en: 'Measures password strength, estimates how long it would survive and generates safe alternatives. Nothing leaves your browser.',
+    },
+    tags: ['Security', 'Entropy', 'Privacy'],
+  },
 ]
+
+export const academic: { icon: string; title: T; meta: T; points: T[]; tags: string[] }[] = [
+  {
+    icon: '❤️',
+    title: { es: 'Predicción de riesgo cardiovascular con Machine Learning', en: 'Cardiovascular risk prediction with Machine Learning' },
+    meta: { es: 'Business Predictive Analytics · Abr – Jul 2025', en: 'Business Predictive Analytics · Apr – Jul 2025' },
+    points: [
+      {
+        es: 'Regresión Logística en Python, el mejor de los modelos evaluados: <strong>AUC de 0.9958</strong> tras optimizar hiperparámetros con Random Search.',
+        en: 'Logistic Regression in Python, the best of the models evaluated: <strong>AUC of 0.9958</strong> after hyperparameter tuning with Random Search.',
+      },
+      {
+        es: 'Limpieza y transformación del dataset (ETL) para entrenamiento y validación.',
+        en: 'Dataset cleaning and transformation (ETL) for training and validation.',
+      },
+    ],
+    tags: ['Python', 'Scikit-learn', 'Random Search', 'ETL'],
+  },
+  {
+    icon: '💬',
+    title: { es: 'Chatbot de IA para detección temprana de ansiedad y depresión', en: 'AI chatbot for early detection of anxiety and depression' },
+    meta: { es: 'Proyecto de tesis (en curso) · Project Manager', en: 'Thesis project (ongoing) · Project Manager' },
+    points: [
+      {
+        es: 'Lidero el desarrollo de un chatbot conversacional con NLP orientado a estudiantes universitarios.',
+        en: 'I lead the development of an NLP conversational chatbot aimed at university students.',
+      },
+      {
+        es: '<strong>Validación en 3 fases</strong>: indicadores de rendimiento con usuarios, juicio de 2 psicólogos clínicos y pruebas de aceptación (UAT).',
+        en: '<strong>3-phase validation</strong>: performance indicators with users, review by 2 clinical psychologists and user acceptance testing (UAT).',
+      },
+    ],
+    tags: ['FastAPI', 'LLaMA 3.1', 'Groq', 'NLP'],
+  },
+]
+
+export const stack = ['Python', 'SQL', 'PostgreSQL', 'Power BI', 'Alteryx', 'Excel', 'Scikit-learn', 'FastAPI', 'ISO/IEC 27001', 'Power Automate', 'Java', 'Git', 'React', 'TypeScript']

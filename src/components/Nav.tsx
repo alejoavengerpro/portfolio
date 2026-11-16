@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useApp } from '../i18n'
 
@@ -10,8 +11,19 @@ const links = [
 
 export default function Nav() {
   const { t, lang, toggleLang, theme, toggleTheme } = useApp()
+  const bar = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const on = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`
+    }
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    return () => window.removeEventListener('scroll', on)
+  }, [])
   return (
     <header className="nav">
+      <div className="progress" ref={bar} />
       <div className="wrap nav-in">
         <Link to="/" className="logo">
           <i>AA</i> Alejandro Avila
