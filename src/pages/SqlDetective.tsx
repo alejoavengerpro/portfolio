@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import type { Database } from 'sql.js'
 import wasmUrl from 'sql.js/dist/sql-wasm.wasm?url'
 import { useApp } from '../i18n'
@@ -233,6 +234,7 @@ export default function SqlDetective() {
           </div>
         </div>
       </div>
+      <BuildNotes k="sql" />
     </main>
   )
 }

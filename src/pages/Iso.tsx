@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { load, save, useApp, type T } from '../i18n'
 import { LabHead } from '../components/Nav'
 import { controls, themes } from '../data/iso'
@@ -268,6 +269,7 @@ export default function Iso() {
           {shown.length === 0 && <p className="sub" style={{ padding: 16, margin: 0 }}>{t({ es: 'Sin resultados.', en: 'No results.' })}</p>}
         </div>
       </div>
+      <BuildNotes k="iso" />
     </main>
   )
 }

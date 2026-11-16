@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { Link } from 'react-router-dom'
 import { load, save, useApp } from '../i18n'
 
@@ -370,6 +371,7 @@ export default function Firewall() {
             </div>
           )}
         </div>
+        <BuildNotes k="firewall" />
       </div>
     </main>
   )

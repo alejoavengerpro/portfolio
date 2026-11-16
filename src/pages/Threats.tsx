@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { useApp } from '../i18n'
 import { LabHead } from '../components/Nav'
 import kev from '../data/kev.json'
@@ -264,6 +265,7 @@ export default function Threats() {
           {t({ es: 'Fuente: CISA Known Exploited Vulnerabilities Catalog (dominio público).', en: 'Source: CISA Known Exploited Vulnerabilities Catalog (public domain).' })}
         </p>
       </div>
+      <BuildNotes k="amenazas" />
     </main>
   )
 }

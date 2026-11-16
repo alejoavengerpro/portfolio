@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { useApp, type T } from '../i18n'
 import { LabHead } from '../components/Nav'
 import data from '../data/peru.json'
@@ -196,6 +197,7 @@ export default function Peru() {
           {t({ es: 'Fuente: Banco Mundial, Indicadores del Desarrollo Mundial (licencia CC BY 4.0).', en: 'Source: World Bank, World Development Indicators (CC BY 4.0 licence).' })}
         </p>
       </div>
+      <BuildNotes k="peru" />
     </main>
   )
 }
