@@ -161,7 +161,7 @@ section.block { padding: 84px 0; }
 .proj .go span { transition: transform 0.2s; }
 
 /* EXPERIENCE */
-.xp-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.xp-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 14px; }
 .xp-head h3 { font-size: 22px; }
 ul.bul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
 ul.bul li { position: relative; padding-left: 22px; color: var(--muted); font-size: 15px; }
