@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { Link } from 'react-router-dom'
 import { load, save, useApp, type T } from '../i18n'
 import { mails, type Mail } from '../data/emails'
@@ -222,6 +223,7 @@ export default function Phishing() {
             </div>
           </div>
         )}
+        <BuildNotes k="phishing" />
       </div>
     </main>
   )

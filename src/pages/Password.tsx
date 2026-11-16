@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import BuildNotes from '../components/BuildNotes'
 import { useApp, type T } from '../i18n'
 import { LabHead } from '../components/Nav'
 
@@ -212,6 +213,7 @@ export default function Password() {
             </div>
           </>
         )}
+        <BuildNotes k="contrasenas" />
       </div>
     </main>
   )

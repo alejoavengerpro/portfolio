@@ -169,6 +169,8 @@ export default function Home() {
       <section className="hero">
         <Particles />
         <div className="wrap">
+          <div className="hero-grid">
+            <div>
           <span className="tag">
             <i className="dot" /> {t({ es: 'Disponible para nuevas oportunidades · Lima, Perú', en: 'Open to new opportunities · Lima, Peru' })}
           </span>
@@ -195,6 +197,16 @@ export default function Home() {
               GitHub ↗
             </a>
             <CvButton />
+          </div>
+            </div>
+            <div className="portrait">
+              <div className="portrait-ring">
+                <img src="/foto.jpg" alt="Alejandro Avila Flores" width="600" height="600" />
+              </div>
+              <span className="float f1">🎓 {t({ es: 'Décimo superior · UPC', en: 'Top 10% · UPC' })}</span>
+              <span className="float f2">💼 Ex EY · Data Analyst</span>
+              <span className="float f3">🛡️ ISO 27001</span>
+            </div>
           </div>
           <div className="stats">
             {stats.map((s, i) => (
