@@ -204,7 +204,7 @@ export default function Home() {
                 <img src="/foto.jpg" alt="Alejandro Avila Flores" width="600" height="600" />
               </div>
               <span className="float f1">🎓 {t({ es: 'Décimo superior · UPC', en: 'Top 10% · UPC' })}</span>
-              <span className="float f2">💼 Ex EY · Data Analyst</span>
+              <span className="float f2">📊 {t({ es: 'Analítica de datos & Auditoría TI', en: 'Data Analytics & IT Audit' })}</span>
               <span className="float f3">🛡️ ISO 27001</span>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function Home() {
           </div>
 
           <Reveal>
-            <h3 className="subhead">{t({ es: 'Proyectos académicos', en: 'Academic projects' })}</h3>
+            <h3 className="subhead">{t({ es: 'Proyectos académicos y personales', en: 'Academic and personal projects' })}</h3>
           </Reveal>
           <div className="grid-2 even">
             {academic.map((a, i) => (
@@ -269,7 +269,8 @@ export default function Home() {
                 <div className="card acad">
                   <div className="xp-head">
                     <div className="ico-sm">{a.icon}</div>
-                    <div style={{ flex: 1, minWidth: 200 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <span className="kind">{t(a.kind)}</span>
                       <h3>{t(a.title)}</h3>
                       <span className="muted" style={{ fontSize: 13 }}>
                         {t(a.meta)}
@@ -417,7 +418,23 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-      <footer>© 2026 Alejandro Avila Flores · React + TypeScript</footer>
+      <footer>
+        <div className="wrap foot">
+          <span>© 2026 Alejandro Avila Flores</span>
+          <nav>
+            <a href={`mailto:${profile.email}`}>Email</a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
+              ↑ {t({ es: 'Inicio', en: 'Top' })}
+            </a>
+          </nav>
+        </div>
+      </footer>
     </main>
   )
 }

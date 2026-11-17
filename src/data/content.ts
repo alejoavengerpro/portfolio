@@ -79,8 +79,8 @@ export const skills: { group: T; items: { name: string; level: number }[] }[] = 
   {
     group: { es: 'Automatización', en: 'Automation' },
     items: [
-      { name: 'Power Automate', level: 50 },
-      { name: 'Power Apps', level: 50 },
+      { name: 'Power Automate', level: 90 },
+      { name: 'Power Apps', level: 90 },
       { name: 'Bizagi · Archimate', level: 55 },
     ],
   },
@@ -226,9 +226,69 @@ export const projects: { to: string; icon: string; color: string; cats: Cat[]; t
   },
 ]
 
-export const academic: { icon: string; title: T; meta: T; points: T[]; tags: string[] }[] = [
+export const academic: { icon: string; kind: T; title: T; meta: T; points: T[]; tags: string[] }[] = [
+  {
+    icon: '💬',
+    kind: { es: 'Tesis', en: 'Thesis' },
+    title: { es: 'Chatbot de IA para detección temprana de ansiedad y depresión', en: 'AI chatbot for early detection of anxiety and depression' },
+    meta: { es: 'Proyecto de tesis (en curso) · Project Manager', en: 'Thesis project (ongoing) · Project Manager' },
+    points: [
+      {
+        es: 'Lidero el desarrollo de un chatbot conversacional con NLP orientado a estudiantes universitarios.',
+        en: 'I lead the development of an NLP conversational chatbot aimed at university students.',
+      },
+      {
+        es: '<strong>Validación en 3 fases</strong>: indicadores de rendimiento con usuarios, juicio de 2 psicólogos clínicos y pruebas de aceptación (UAT).',
+        en: '<strong>3-phase validation</strong>: performance indicators with users, review by 2 clinical psychologists and user acceptance testing (UAT).',
+      },
+    ],
+    tags: ['FastAPI', 'LLaMA 3.1', 'Groq', 'NLP'],
+  },
+  {
+    icon: '🔐',
+    kind: { es: 'Académico', en: 'Academic' },
+    title: { es: 'Auditoría de TI y evaluación de controles de ciberseguridad', en: 'IT audit and cybersecurity controls assessment' },
+    meta: { es: 'Control y Auditoría en Sistemas de Información · Ene 2026', en: 'Information Systems Control and Audit · Jan 2026' },
+    points: [
+      {
+        es: 'Participé en la auditoría de TI de <strong>una empresa real</strong>, evaluando sus controles de seguridad bajo COBIT 2019, ISO/IEC 27001:2022 e ITIL v4.',
+        en: 'I took part in the IT audit of <strong>a real company</strong>, assessing its security controls against COBIT 2019, ISO/IEC 27001:2022 and ITIL v4.',
+      },
+      {
+        es: 'Documenté hallazgos críticos: <strong>35% de cuentas administrativas sin MFA</strong> y despliegues a producción sin segregación de funciones por falta de protección de ramas en el pipeline CI/CD.',
+        en: 'I documented critical findings: <strong>35% of administrative accounts without MFA</strong> and production deployments without segregation of duties due to missing branch protection in the CI/CD pipeline.',
+      },
+      {
+        es: 'Propuse automatizar controles: alta y baja de accesos, pruebas de integridad en AWS S3 y reglas de protección de ramas en GitHub.',
+        en: 'I proposed automating controls: access provisioning and deprovisioning, integrity checks in AWS S3 and branch protection rules in GitHub.',
+      },
+    ],
+    tags: ['COBIT 2019', 'ISO/IEC 27001:2022', 'ITIL v4', 'GitHub'],
+  },
+  {
+    icon: '🧩',
+    kind: { es: 'Personal', en: 'Personal' },
+    title: { es: 'Sistema ERP con Power Apps y Power Automate', en: 'ERP system with Power Apps and Power Automate' },
+    meta: { es: 'Proyecto personal · Automatización de procesos de gestión', en: 'Personal project · Business process automation' },
+    points: [
+      {
+        es: 'Diseñé una aplicación tipo ERP en Power Apps para gestionar empleados, productos, clientes, ventas y capacitaciones, con SharePoint como base de datos.',
+        en: 'I designed an ERP-style app in Power Apps to manage employees, products, customers, sales and training, with SharePoint as the database.',
+      },
+      {
+        es: 'Automaticé correos y notificaciones con flujos de Power Automate, incluidos recordatorios diarios de capacitación a las 8:00 a.m.',
+        en: 'I automated emails and notifications with Power Automate flows, including daily training reminders at 8:00 a.m.',
+      },
+      {
+        es: 'Reduje el <strong>margen de error en 90%</strong> y el <strong>tiempo en tareas manuales en 40%</strong>: cerca de 1 hora diaria ahorrada.',
+        en: 'I cut the <strong>error margin by 90%</strong> and <strong>time on manual tasks by 40%</strong>: about 1 hour saved per day.',
+      },
+    ],
+    tags: ['Power Apps', 'Power Automate', 'SharePoint', 'Low-Code'],
+  },
   {
     icon: '❤️',
+    kind: { es: 'Académico', en: 'Academic' },
     title: { es: 'Predicción de riesgo cardiovascular con Machine Learning', en: 'Cardiovascular risk prediction with Machine Learning' },
     meta: { es: 'Business Predictive Analytics · Abr – Jul 2025', en: 'Business Predictive Analytics · Apr – Jul 2025' },
     points: [
@@ -244,21 +304,26 @@ export const academic: { icon: string; title: T; meta: T; points: T[]; tags: str
     tags: ['Python', 'Scikit-learn', 'Random Search', 'ETL'],
   },
   {
-    icon: '💬',
-    title: { es: 'Chatbot de IA para detección temprana de ansiedad y depresión', en: 'AI chatbot for early detection of anxiety and depression' },
-    meta: { es: 'Proyecto de tesis (en curso) · Project Manager', en: 'Thesis project (ongoing) · Project Manager' },
+    icon: '🚨',
+    kind: { es: 'Académico', en: 'Academic' },
+    title: { es: 'Playbook de respuesta a incidentes y pruebas de seguridad web', en: 'Incident response playbook and web security testing' },
+    meta: { es: 'Fundamentos de Ciberseguridad & Hacking Ético', en: 'Cybersecurity Fundamentals & Ethical Hacking' },
     points: [
       {
-        es: 'Lidero el desarrollo de un chatbot conversacional con NLP orientado a estudiantes universitarios.',
-        en: 'I lead the development of an NLP conversational chatbot aimed at university students.',
+        es: 'Analicé un caso de spear phishing y diseñé el <strong>playbook de respuesta</strong>: identificación, contención, erradicación y recuperación.',
+        en: 'I analysed a spear phishing case and designed the <strong>response playbook</strong>: identification, containment, eradication and recovery.',
       },
       {
-        es: '<strong>Validación en 3 fases</strong>: indicadores de rendimiento con usuarios, juicio de 2 psicólogos clínicos y pruebas de aceptación (UAT).',
-        en: '<strong>3-phase validation</strong>: performance indicators with users, review by 2 clinical psychologists and user acceptance testing (UAT).',
+        es: 'Analicé tráfico de red con Wireshark (HTTP vs HTTPS, FTP, SSH) e identifiqué vulnerabilidades de SQL Injection con Burp Suite y SQLmap.',
+        en: 'I analysed network traffic with Wireshark (HTTP vs HTTPS, FTP, SSH) and identified SQL Injection vulnerabilities with Burp Suite and SQLmap.',
+      },
+      {
+        es: 'Practiqué explotación controlada con Metasploit en entornos de laboratorio y administración básica por línea de comandos en Linux.',
+        en: 'I practised controlled exploitation with Metasploit in lab environments and basic command-line administration on Linux.',
       },
     ],
-    tags: ['FastAPI', 'LLaMA 3.1', 'Groq', 'NLP'],
+    tags: ['Wireshark', 'Burp Suite', 'SQLmap', 'Metasploit', 'Linux'],
   },
 ]
 
-export const stack = ['Python', 'SQL', 'PostgreSQL', 'Power BI', 'Alteryx', 'Excel', 'Scikit-learn', 'FastAPI', 'ISO/IEC 27001', 'Power Automate', 'Java', 'Git', 'React', 'TypeScript']
+export const stack = ['Python', 'SQL', 'PostgreSQL', 'Power BI', 'Alteryx', 'Excel', 'Scikit-learn', 'FastAPI', 'ISO/IEC 27001', 'Power Automate', 'Power Apps', 'SharePoint', 'COBIT 2019', 'ITIL v4', 'Wireshark', 'Burp Suite', 'Java', 'Git']
