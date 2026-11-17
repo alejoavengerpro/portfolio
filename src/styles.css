@@ -416,3 +416,15 @@ button.hbar:hover, .hbar.on { background: var(--card); }
 @media (max-width: 900px) { .notes-grid { grid-template-columns: 1fr; } }
 .notes-grid h3 { font-size: 16px; margin-bottom: 6px; }
 .notes-grid p { font-size: 14px; color: var(--muted); }
+
+/* v5 */
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px; }
+.foot a { padding: 6px 11px; border-radius: 9px; transition: 0.2s; }
+.foot a:hover { color: var(--text); background: var(--card); }
+.kind { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c1); margin-bottom: 4px; }
+.grid-2.even > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+.acad { transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+.acad:hover { transform: translateY(-4px); border-color: var(--c2); box-shadow: var(--shadow); }
+.acad .xp-head { align-items: flex-start; }
+@media (max-width: 900px) { .f2 { right: -30%; } }
